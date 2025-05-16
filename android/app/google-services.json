@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "988354498528",
+    "project_id": "ppb-firebase-notificatio-bc97e",
+    "storage_bucket": "ppb-firebase-notificatio-bc97e.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:988354498528:android:5ff2542f2f8b1d7b406585",
+        "android_client_info": {
+          "package_name": "com.example.notification_firebase"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCrg1Q6xyksMnEKnvSiXvcR770A64-TBBw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
