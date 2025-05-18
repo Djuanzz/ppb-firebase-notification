@@ -43,13 +43,28 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   ElevatedButton(
-                    onPressed: () {
+                    onPressed: () async {
                       if (docId != null) {
                         // UPDATE NOTE
-                        firestoreService.updateNote(docId, noteController.text);
+                        await firestoreService.updateNote(
+                          docId,
+                          noteController.text,
+                        );
+                        await NotificationService.createNotification(
+                          id: 2,
+                          title: 'Note Updated',
+                          body: 'Your note has been updated successfully!',
+                          summary: 'Note update',
+                        );
                       } else {
                         // ADD NOTE
-                        firestoreService.addNote(noteController.text);
+                        await firestoreService.addNote(noteController.text);
+                        await NotificationService.createNotification(
+                          id: 1,
+                          title: 'Note Added',
+                          body: 'Your note has been added successfully!',
+                          summary: 'New note',
+                        );
                       }
 
                       // CLEAR
