@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:notification_firebase/services/notification.service.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -25,6 +26,29 @@ class _LoginScreenState extends State<LoginScreen> {
     Navigator.pushReplacementNamed(context, 'home');
   }
 
+  // void signIn() async {
+  //   setState(() {
+  //     _isLoading = true;
+  //     _errorCode = "";
+  //   });
+
+  //   try {
+  //     await FirebaseAuth.instance.signInWithEmailAndPassword(
+  //       email: _emailController.text,
+  //       password: _passwordController.text,
+  //     );
+  //     navigateHome();
+  //   } on FirebaseAuthException catch (e) {
+  //     setState(() {
+  //       _errorCode = e.code;
+  //     });
+  //   }
+
+  //   setState(() {
+  //     _isLoading = false;
+  //   });
+  // }
+
   void signIn() async {
     setState(() {
       _isLoading = true;
@@ -36,13 +60,24 @@ class _LoginScreenState extends State<LoginScreen> {
         email: _emailController.text,
         password: _passwordController.text,
       );
+      if (!mounted) return;
       navigateHome();
     } on FirebaseAuthException catch (e) {
       setState(() {
         _errorCode = e.code;
       });
+
+      if (!mounted) return;
+
+      await NotificationService.createNotification(
+        id: 1,
+        title: "Login failed",
+        body: _errorCode,
+        summary: "Login error",
+      );
     }
 
+    if (!mounted) return;
     setState(() {
       _isLoading = false;
     });
